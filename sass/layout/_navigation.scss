@@ -1,0 +1,154 @@
+// ! Navigation Section
+.navigation {
+	// ! Display None and we click on circle label to click checkbox
+	&__checkbox {
+		display: none;
+	}
+	// ! Button Circle
+	&__button {
+		background-color: $color-white;
+		height: 7rem;
+		width: 7rem;
+		border-radius: 50%;
+		box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
+		position: fixed;
+		top: 6rem;
+		right: 6rem;
+		z-index: 2000;
+		// ! Z index to shay on the top
+		text-align: center;
+		// ! Dispaly Flex to center verticaly and horizontaly three Lines Hamburger ---
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		@include respond(tab-port) {
+			top: 3rem;
+			right: 3rem;
+		}
+	}
+	// ! Background gradiend green
+	&__background {
+		// ! initially to brhind the button but when we click it will scale to 80
+		height: 6rem;
+		width: 6rem;
+		border-radius: 50%;
+		position: fixed;
+		top: 6.5rem;
+		right: 6.5rem;
+		background-image: radial-gradient(
+			$color-primary-light,
+			$color-primary-dark
+		);
+		z-index: 1000;
+		// ! Custom transition-timing-function => cubic-bezier(0.86, 0, 0.07, 1)
+		transition: all 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+		@include respond(tab-port) {
+			top: 3.5rem;
+			right: 3.5rem;
+		}
+	}
+	&__nav {
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
+		// ! initially to opaque 0
+		opacity: 0;
+		width: 0;
+		z-index: 1500;
+		transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	}
+	&__list {
+		// ! Mixin Absolute Center
+		@include absCenter;
+		list-style: none;
+		text-align: center;
+		width: 100%;
+	}
+	&__item {
+		margin: 1rem;
+	}
+	&__link {
+		&:link,
+		&:visited {
+			display: inline-block;
+			font-size: 3rem;
+			font-weight: 300;
+			padding: 1rem 2rem;
+			color: $color-white;
+			text-decoration: none;
+			text-transform: uppercase;
+			background-image: linear-gradient(
+				120deg,
+				transparent 0%,
+				transparent 50%,
+				$color-white 50%
+			);
+			background-size: 300%;
+			transition: 0.4s;
+		}
+		&:active,
+		&:hover {
+			background-position: 100%;
+			color: $color-primary-medium;
+			transform: translateX(-1rem);
+		}
+		span {
+			margin-right: 1.5rem;
+			display: inline-block;
+		}
+	}
+	// ! if the button is checked then backgound will scale to 80 to fill the screen
+	&__checkbox:checked ~ &__background {
+		transform: scale(80);
+	}
+	// ! if the button is checked then width of li i.e, &__nav 100% and opaque 1
+	&__checkbox:checked ~ &__nav {
+		width: 100%;
+		opacity: 1;
+	}
+	// ! Creating three line hamburger lines
+	&__icon {
+		position: relative;
+		&,
+		&::after,
+		&::before {
+			width: 3rem;
+			height: 2px;
+			background-color: $color-grey-dark-3;
+			display: inline-block;
+		}
+		&::after,
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			transition: 0.2s;
+		}
+		&::before {
+			top: -0.8rem;
+		}
+		&::after {
+			top: 0.8rem;
+		}
+	}
+	&__button:hover &__icon::before {
+		top: -0.9rem;
+	}
+	&__button:hover &__icon::after {
+		top: 0.9rem;
+	}
+	// ! if the button is checked then if will change is to X
+	&__checkbox:checked + &__button &__icon {
+		background-color: transparent;
+	}
+	&__checkbox:checked + &__button &__icon::before {
+		top: 0;
+		transform: rotate(135deg);
+	}
+	&__checkbox:checked + &__button &__icon::after {
+		top: 0;
+		transform: rotate(-135deg);
+	}
+}

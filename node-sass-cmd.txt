@@ -1,0 +1,43 @@
+first go to the folder of web dev
+
+then in cmd : npm init
+
+then enter package details
+
+then in cmd : npm install node-sass --save-dev
+
+--save-dev as developer Dependencies
+
+if you want to include librery like jQuery
+
+     : npm install jquery --save
+
+--for uninstall
+
+     : npm uninstall jquery --save
+
+then screate scss folder and then add main.scss file in it
+
+then in package.json file enter script for compile main.scss file
+
+     : "compile:sass" :"node-sass sass/main.scss css/style.css"
+
+Compile : 
+
+     \Users\Akshay\Desktop\WEB DEV\Jonas\Natours\sass>npm run compile:sass
+
+     > natours@1.0.0 compile:sass C:\Users\Akshay\Desktop\WEB DEV\Jonas\Natours
+     > node-sass sass/main.scss css/style.css
+
+     Rendering Complete, saving .css file...
+     Wrote CSS to C:\Users\Akshay\Desktop\WEB DEV\Jonas\Natours\css\style.css
+
+each time you have to compile after writing rules in to main.scss
+
+put -w flag(write) to auto compile the main.scss to style.css
+
+     : "compile:sass" :"node-sass sass/main.scss css/style.css -w"
+
+Compile : 
+
+     \Users\Akshay\Desktop\WEB DEV\Jonas\Natours\sass>npm run compile:sass
